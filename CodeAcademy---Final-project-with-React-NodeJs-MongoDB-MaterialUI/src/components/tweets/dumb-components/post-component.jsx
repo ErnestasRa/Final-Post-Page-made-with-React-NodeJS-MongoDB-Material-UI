@@ -22,12 +22,14 @@ const PostComponent = ({
   onClick,
   email,
   userImage,
+  likeHeartIcon,
 }) => {
   return (
     <Card
       sx={{ width: "50vh", display: "flex", flexDirection: "column", gap: 2 }}
     >
       <CardHeader
+        titleTypographyProps={{ fontSize: "30px" }}
         avatar={<Avatar src={userImage} />}
         title={`${firstName} ${lastName}`}
         subheader={email}
@@ -40,16 +42,17 @@ const PostComponent = ({
         sx={{ objectFit: "scale-down" }}
       />
       <CardContent>
-        <Typography variant="body2">{tweet}</Typography>
+        <Typography variant="h5">{tweet}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          onClick={() => likeHeartIcon()}
+          aria-label="add to favorites"
+        >
           <FavoriteIcon />
         </IconButton>
-        <Typography color="text.secondary">
-          Likes count: {likesCount}
-        </Typography>
-        <Box>
+        <Typography color="text.secondary">{likesCount}</Typography>
+        <Box sx={{ display: "flex", justifyContent: "end" }}>
           <Button onClick={onClick}>View tweet</Button>
         </Box>
       </CardActions>

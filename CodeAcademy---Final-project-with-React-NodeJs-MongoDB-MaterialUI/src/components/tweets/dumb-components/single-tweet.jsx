@@ -22,11 +22,13 @@ const SingleTweetComponent = ({
         flexDirection: "column",
         gap: 2,
         mt: "5vh",
+        height: "auto",
       }}
     >
       <CardMedia
         component="img"
-        height="140"
+        height="300"
+        sx={{ objectFit: "scale-down" }}
         image={image}
         alt="green iguana"
       />

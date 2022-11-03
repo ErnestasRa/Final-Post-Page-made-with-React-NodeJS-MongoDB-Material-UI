@@ -119,7 +119,12 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <TwitterIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <TwitterIcon
+            sx={{
+              display: { xs: "flex", md: "none", color: "lightblue" },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -132,7 +137,7 @@ function ResponsiveAppBar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "lightblue",
               textDecoration: "none",
             }}
           >
@@ -149,7 +154,7 @@ function ResponsiveAppBar() {
                     color: "white",
                     display: "block",
                     textDecoration: "none",
-                    fontFamily: "monospace",
+                    fontFamily: "cursive",
                   }}
                 >
                   {page.name}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, Paper, TextField } from "@mui/material";
-import { get } from "../../functions/http";
+import { get, post } from "../../functions/http";
 import { useNavigate } from "react-router-dom";
 import PostComponent from "../../components/tweets/dumb-components/post-component";
 import MainContext from "../../context/main-context";
@@ -14,6 +14,17 @@ const MainPageComponent = () => {
   const getAllTweets = async () => {
     const res = await get("alltweets");
     setTweets(res);
+  };
+
+  const likeHeartIcon = async (id) => {
+    const tweetId = {
+      id: id,
+    };
+    const res = await post("addliketotweet", tweetId);
+    if (res.error) {
+      navigate("/notloggedin");
+    }
+    getAllTweets();
   };
 
   const filterTweets = () => {
@@ -49,7 +60,7 @@ const MainPageComponent = () => {
         <TextField
           id="standard-basic"
           inputRef={searchRef}
-          label="Search tweets..."
+          label="Search tweets by title..."
           variant="standard"
           onChange={filterTweets}
           size="small"
@@ -70,6 +81,7 @@ const MainPageComponent = () => {
                     email={tweet.email}
                     onClick={() => viewSingleTweet(tweet._id)}
                     userImage={tweet.userImage}
+                    likeHeartIcon={() => likeHeartIcon(tweet._id)}
                     key={i}
                   />
                 );

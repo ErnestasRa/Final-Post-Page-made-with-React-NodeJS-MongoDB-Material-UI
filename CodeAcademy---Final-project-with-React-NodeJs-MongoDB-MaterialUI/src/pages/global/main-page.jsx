@@ -4,27 +4,28 @@ import MainPageComponent from "../../components/main-page/main-page";
 import ResponsiveAppBar from "../../components/app-bar";
 import StickyFooter from "../../components/footer-component";
 import colorBackground from "../../styles/colors";
-import fonts from "../../styles/fonts";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const MainPage = () => {
   return (
-    <Container
-      sx={{
-        background: colorBackground.background.secondary.main,
-      }}
-    >
-      <Paper
-        sx={{
-          background: colorBackground.background.secondary.main,
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "wrap",
-        }}
+    <Container>
+      <CssBaseline
+        sx={{ background: colorBackground.background.secondary.main }}
       >
-        <ResponsiveAppBar />
-        <MainPageComponent />
-        <StickyFooter />
-      </Paper>
+        <Paper
+          elevation={3}
+          sx={{
+            background: colorBackground.background.secondary.main,
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+          }}
+        >
+          <ResponsiveAppBar />
+          <MainPageComponent />
+          <StickyFooter />
+        </Paper>
+      </CssBaseline>
     </Container>
   );
 };

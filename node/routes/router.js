@@ -71,5 +71,4 @@ router.post("/deleteusertweet", deleteusertweet);
 router.post("/deleteusercomment", deleteusercomment);
 router.post("/sendmessage", sendmessage);
 router.post("/deletemessage", deletemessage);
-
 module.exports = router;

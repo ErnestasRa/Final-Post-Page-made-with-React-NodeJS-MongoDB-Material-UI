@@ -75,11 +75,6 @@ const SingleTweet = () => {
     }
   };
 
-  const viewProfile = async (id) => {
-    localStorage.setItem("userId", id);
-    navigate("/viewprofile");
-  };
-
   const toggleVisibility = () => {
     if (toggle === "visible") {
       setToggle("none");
