@@ -15,12 +15,11 @@ const UsersCard = ({ image, firstName, lastName, email, viewProfile }) => {
         display: "flex",
         flexDirection: "column",
         width: "30vh",
-        height: "50vh",
-        mt: "10vh",
+        height: "auto",
       }}
     >
       <CardMedia component="img" height="200vh" image={image} alt="none" />
-      <CardContent>
+      <CardContent sx={{ display: "flex", flexDirection: "column" }}>
         <Typography gutterBottom variant="h5" component="div">
           {firstName} {lastName}
         </Typography>

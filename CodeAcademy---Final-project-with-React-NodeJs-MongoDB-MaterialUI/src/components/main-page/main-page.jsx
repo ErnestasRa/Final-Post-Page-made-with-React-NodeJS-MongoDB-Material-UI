@@ -4,13 +4,11 @@ import PostComponent from "../../components/tweets/dumb-components/post-componen
 import { get } from "../../functions/http";
 import { useNavigate } from "react-router-dom";
 import MainContext from "../../context/main-context";
-import { TwoMpTwoTone } from "@mui/icons-material";
 
 const MainPageComponent = () => {
   const navigate = useNavigate();
   const { tweets, setTweets } = React.useContext(MainContext);
   const [filteredTweets, setFilteredTweets] = React.useState([]);
-  const [postImage, setPostImage] = React.useState([]);
   const searchRef = React.useRef();
 
   const getAllTweets = async () => {
