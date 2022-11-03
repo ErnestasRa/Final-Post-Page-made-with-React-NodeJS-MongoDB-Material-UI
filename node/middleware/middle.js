@@ -28,4 +28,13 @@ module.exports = {
 
     next();
   },
+  hasUpperCase: async (req, res, next) => {
+    const { name, surname } = req.body;
+    if (!hasUpperCase(name))
+      return sendRes(res, true, "needs one uppercase letter", null);
+    if (!hasUpperCase(surname))
+      return sendRes(res, true, "needs one uppercase letter", null);
+
+    next();
+  },
 };

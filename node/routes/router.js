@@ -3,8 +3,7 @@ const router = express.Router();
 const {
   emailValid,
   passwordValid,
-  isSecretValid,
-  hasUpperCaseLetter,
+  hasUpperCase,
 } = require("../middleware/middle");
 const {
   navbarNotLoggedIn,
@@ -48,6 +47,9 @@ const {
 const {
   sendmessage,
 } = require("../controllers/users/global/messages/send-message");
+const {
+  deletemessage,
+} = require("../controllers/users/global/messages/delete-message");
 
 router.get("/navbarnot", navbarNotLoggedIn);
 router.get("/navbarsettings", navbarSettings);
@@ -57,7 +59,7 @@ router.get("/logout", logout);
 router.get("/loggedinuser", userprofile);
 
 router.post("/allcomments", allcomments);
-router.post("/register", emailValid, passwordValid, register);
+router.post("/register", emailValid, passwordValid, hasUpperCase, register);
 router.post("/login", emailValid, userLogin);
 router.post("/createtweet", createtweet);
 router.post("/singletweet", singletweet);
@@ -68,5 +70,6 @@ router.post("/viewuserprofile", viewuserprofile);
 router.post("/deleteusertweet", deleteusertweet);
 router.post("/deleteusercomment", deleteusercomment);
 router.post("/sendmessage", sendmessage);
+router.post("/deletemessage", deletemessage);
 
 module.exports = router;
