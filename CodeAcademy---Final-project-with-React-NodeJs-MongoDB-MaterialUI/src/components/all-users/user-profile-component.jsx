@@ -24,7 +24,6 @@ const UserProfileComponent = () => {
 
   const getUserProfileInfo = async () => {
     const res = await get("loggedinuser");
-    console.log(res);
 
     if (!res.error) {
       setUserProfile(res.data.loggedInUser);

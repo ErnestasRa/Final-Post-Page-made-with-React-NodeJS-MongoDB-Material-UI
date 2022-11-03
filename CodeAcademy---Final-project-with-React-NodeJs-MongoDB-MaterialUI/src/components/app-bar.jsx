@@ -14,16 +14,25 @@ import {
   Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { blue } from "@mui/material/colors";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { get } from "../functions/http";
 import colorBackground from "../styles/colors";
+import MainContext from "../context/main-context";
+import { useNavigate } from "react-router-dom";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [navbarItems, setNavBarItems] = React.useState([]);
   const [navBarSettings, setNavBarSettings] = React.useState([]);
+  const { userProfile, setUserProfile } = React.useContext(MainContext);
+
+  const getUserProfileInfo = async () => {
+    const res = await get("loggedinuser");
+    if (!res.error) {
+      setUserProfile(res.data.loggedInUser);
+    }
+  };
 
   const getNavBarItems = async () => {
     const res = await get("navbarnot");
@@ -38,6 +47,7 @@ function ResponsiveAppBar() {
   React.useEffect(() => {
     getNavBarItems();
     getNavBarSettings();
+    getUserProfileInfo();
   }, []);
 
   return (
@@ -147,7 +157,7 @@ function ResponsiveAppBar() {
                 onClick={(e) => setAnchorElUser(e.currentTarget)}
                 sx={{ p: 0 }}
               >
-                <Avatar alt="Remy Sharp" src="" />
+                <Avatar alt="Remy Sharp" src={userProfile.image} />
               </IconButton>
             </Tooltip>
             <Menu

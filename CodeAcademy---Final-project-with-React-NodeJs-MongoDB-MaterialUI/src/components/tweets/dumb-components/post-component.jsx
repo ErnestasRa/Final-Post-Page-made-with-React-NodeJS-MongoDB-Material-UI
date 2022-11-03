@@ -1,6 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import { blue, lightBlue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   Box,
@@ -31,11 +29,7 @@ const PostComponent = ({
       sx={{ width: "50vh", display: "flex", flexDirection: "column", gap: 2 }}
     >
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: "lightblue" }} aria-label="recipe">
-            {firstName.charAt(0)}
-          </Avatar>
-        }
+        avatar={<Avatar src={userImage} />}
         title={`${firstName} ${lastName}`}
         subheader={email}
       />

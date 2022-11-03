@@ -45,7 +45,9 @@ const ViewProfileComponent = () => {
       email: userEmail,
     };
     const res = await post("sendmessage", messageData);
-    console.log(res);
+    if (res.error) {
+      navigate("/notloggedin");
+    }
   };
 
   const toggleCommentsVisibility = () => {

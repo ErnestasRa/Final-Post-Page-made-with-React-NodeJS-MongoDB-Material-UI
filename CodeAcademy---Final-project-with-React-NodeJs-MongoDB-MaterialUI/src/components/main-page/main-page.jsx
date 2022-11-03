@@ -4,15 +4,18 @@ import PostComponent from "../../components/tweets/dumb-components/post-componen
 import { get } from "../../functions/http";
 import { useNavigate } from "react-router-dom";
 import MainContext from "../../context/main-context";
+import { TwoMpTwoTone } from "@mui/icons-material";
 
 const MainPageComponent = () => {
   const navigate = useNavigate();
   const { tweets, setTweets } = React.useContext(MainContext);
   const [filteredTweets, setFilteredTweets] = React.useState([]);
+  const [postImage, setPostImage] = React.useState([]);
   const searchRef = React.useRef();
 
   const getAllTweets = async () => {
     const res = await get("alltweets");
+    console.log(res);
     setTweets(res);
   };
 
@@ -56,34 +59,42 @@ const MainPageComponent = () => {
           sx={{ width: "30vh" }}
         />
         {filteredTweets.length === 0
-          ? tweets.map((tweet, i) => {
-              return (
-                <PostComponent
-                  firstName={tweet.firstName}
-                  image={tweet.image}
-                  lastName={tweet.lastName}
-                  likesCount={tweet.likes}
-                  tweet={tweet.tweet}
-                  email={tweet.email}
-                  onClick={() => viewSingleTweet(tweet._id)}
-                  key={i}
-                />
-              );
-            })
-          : filteredTweets.map((tweet, i) => {
-              return (
-                <PostComponent
-                  firstName={tweet.firstName}
-                  image={tweet.image}
-                  lastName={tweet.lastName}
-                  likesCount={tweet.likes}
-                  tweet={tweet.tweet}
-                  email={tweet.email}
-                  onClick={() => viewSingleTweet(tweet._id)}
-                  key={i}
-                />
-              );
-            })}
+          ? tweets
+              .slice(0)
+              .reverse()
+              .map((tweet, i) => {
+                return (
+                  <PostComponent
+                    firstName={tweet.firstName}
+                    image={tweet.image}
+                    lastName={tweet.lastName}
+                    likesCount={tweet.likes}
+                    tweet={tweet.tweet}
+                    email={tweet.email}
+                    onClick={() => viewSingleTweet(tweet._id)}
+                    userImage={tweet.userImage}
+                    key={i}
+                  />
+                );
+              })
+          : filteredTweets
+              .slice(0)
+              .reverse()
+              .map((tweet, i) => {
+                return (
+                  <PostComponent
+                    firstName={tweet.firstName}
+                    image={tweet.image}
+                    lastName={tweet.lastName}
+                    likesCount={tweet.likes}
+                    tweet={tweet.tweet}
+                    email={tweet.email}
+                    onClick={() => viewSingleTweet(tweet._id)}
+                    userImage={tweet.userImage}
+                    key={i}
+                  />
+                );
+              })}
       </Paper>
     </Container>
   );
