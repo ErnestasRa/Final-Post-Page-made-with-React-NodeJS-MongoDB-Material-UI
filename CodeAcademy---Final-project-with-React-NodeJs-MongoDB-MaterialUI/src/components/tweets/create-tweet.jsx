@@ -30,7 +30,7 @@ const CreatePostComponent = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "30vh",
+          height: "100vh",
           gap: 2,
         }}
       >

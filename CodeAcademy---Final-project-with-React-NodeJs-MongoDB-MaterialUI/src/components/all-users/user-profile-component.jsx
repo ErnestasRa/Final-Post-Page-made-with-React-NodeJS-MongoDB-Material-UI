@@ -4,7 +4,6 @@ import MainContext from "../../context/main-context";
 import UserProfileCard from "./dumb-components/user-profile";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { NavigateBeforeTwoTone } from "@mui/icons-material";
 
 const UserProfileComponent = () => {
   const urlRef = React.useRef();
@@ -41,6 +40,7 @@ const UserProfileComponent = () => {
       userId: userProfile._id,
     };
     const res = await post("newprofilepic", newPicUrl);
+    if (res.error) navigate("/notloggedin");
     urlRef.current.value = "";
     setToggle("none");
     getUserProfileInfo();

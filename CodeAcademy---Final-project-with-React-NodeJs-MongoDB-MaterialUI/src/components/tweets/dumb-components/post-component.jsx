@@ -12,7 +12,6 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-const today = new Date();
 
 const PostComponent = ({
   firstName,
@@ -33,7 +32,6 @@ const PostComponent = ({
         title={`${firstName} ${lastName}`}
         subheader={email}
       />
-      <Typography>{today.getFullYear()}</Typography>
       <CardMedia
         component="img"
         height="300"

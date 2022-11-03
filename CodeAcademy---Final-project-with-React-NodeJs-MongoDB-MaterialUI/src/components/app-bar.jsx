@@ -15,10 +15,10 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import HomeIcon from "@mui/icons-material/Home";
 import { get } from "../functions/http";
 import colorBackground from "../styles/colors";
 import MainContext from "../context/main-context";
-import { useNavigate } from "react-router-dom";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -142,8 +142,15 @@ function ResponsiveAppBar() {
             {navbarItems.map((page, i) => (
               <Link href={page.to} key={i + 1}>
                 <Button
+                  variant=""
                   onClick={() => setAnchorElNav(null)}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    textDecoration: "none",
+                    fontFamily: "monospace",
+                  }}
                 >
                   {page.name}
                 </Button>

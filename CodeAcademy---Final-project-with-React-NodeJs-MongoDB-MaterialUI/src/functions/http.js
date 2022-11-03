@@ -19,7 +19,6 @@ const post = async (url, data) => {
     },
     body: JSON.stringify(data),
   };
-
   const res = await fetch("http://localhost:4000/" + url, options);
   return await res.json();
 };

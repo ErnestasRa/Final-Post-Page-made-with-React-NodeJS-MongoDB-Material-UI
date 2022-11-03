@@ -19,6 +19,8 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const LoginPageComponent = () => {
+  const [errorMsg, setErrorMsg] = React.useState("");
+  const [error, setError] = React.useState(false);
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
   const navigate = useNavigate();
@@ -30,10 +32,13 @@ const LoginPageComponent = () => {
     };
     const res = await post("login", userLoginData);
 
+    if (res.error) {
+      setErrorMsg("User not found");
+      setError(true);
+    }
+
     if (!res.error) {
       navigate("/");
-    } else {
-      throw new Error(res.error);
     }
   };
 
@@ -57,6 +62,7 @@ const LoginPageComponent = () => {
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
+              error={error}
               margin="normal"
               required
               fullWidth
@@ -78,10 +84,7 @@ const LoginPageComponent = () => {
               autoComplete="current-password"
               inputRef={passwordRef}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            <Typography sx={{ color: "red" }}>{errorMsg}</Typography>
             <Button
               fullWidth
               variant="contained"

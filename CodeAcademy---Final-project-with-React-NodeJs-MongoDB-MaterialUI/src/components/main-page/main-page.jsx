@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Container, Paper, TextField } from "@mui/material";
-import PostComponent from "../../components/tweets/dumb-components/post-component";
 import { get } from "../../functions/http";
 import { useNavigate } from "react-router-dom";
+import PostComponent from "../../components/tweets/dumb-components/post-component";
 import MainContext from "../../context/main-context";
 
 const MainPageComponent = () => {
@@ -13,7 +13,6 @@ const MainPageComponent = () => {
 
   const getAllTweets = async () => {
     const res = await get("alltweets");
-    console.log(res);
     setTweets(res);
   };
 

@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const RegisterPageComponent = () => {
+  const [error, setError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
   const nameRef = React.useRef();
   const surnameRef = React.useRef();
   const emailRef = React.useRef();
@@ -34,7 +36,12 @@ const RegisterPageComponent = () => {
     };
 
     const res = await post("register", data);
-    console.log(res);
+    if (res.error) {
+      setErrorMessage(res.message);
+      setError(true);
+    } else {
+      setError(false);
+    }
 
     if (!res.error) {
       navigate("/login");
@@ -63,6 +70,7 @@ const RegisterPageComponent = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={error}
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -75,6 +83,7 @@ const RegisterPageComponent = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={error}
                   required
                   fullWidth
                   id="lastName"
@@ -86,6 +95,7 @@ const RegisterPageComponent = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={error}
                   required
                   fullWidth
                   id="email"
@@ -97,6 +107,7 @@ const RegisterPageComponent = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={error}
                   required
                   fullWidth
                   name="password"
@@ -109,6 +120,7 @@ const RegisterPageComponent = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={error}
                   required
                   fullWidth
                   name="passwordConfirm"
@@ -120,6 +132,7 @@ const RegisterPageComponent = () => {
                 />
               </Grid>
             </Grid>
+            <Typography sx={{ color: "red" }}>{errorMessage}</Typography>
             <Button
               type="submit"
               fullWidth

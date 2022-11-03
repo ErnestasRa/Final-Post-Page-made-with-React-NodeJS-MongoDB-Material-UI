@@ -4,10 +4,15 @@ import MainPageComponent from "../../components/main-page/main-page";
 import ResponsiveAppBar from "../../components/app-bar";
 import StickyFooter from "../../components/footer-component";
 import colorBackground from "../../styles/colors";
+import fonts from "../../styles/fonts";
 
 const MainPage = () => {
   return (
-    <Container sx={{ background: colorBackground.background.secondary.main }}>
+    <Container
+      sx={{
+        background: colorBackground.background.secondary.main,
+      }}
+    >
       <Paper
         sx={{
           background: colorBackground.background.secondary.main,
