@@ -1,9 +1,9 @@
 import * as React from "react";
 import { post } from "../../functions/http";
-import UserViewCard from "./dumb-components/user-view-card";
 import { useNavigate } from "react-router-dom";
-import MainContext from "../../context/main-context";
 import { Box, Typography } from "@mui/material";
+import UserViewCard from "./dumb-components/user-view-card";
+import MainContext from "../../context/main-context";
 
 const ViewProfileComponent = () => {
   const userId = localStorage.getItem("userId");
@@ -11,6 +11,8 @@ const ViewProfileComponent = () => {
   const messageRef = React.useRef();
   const navigate = useNavigate();
   const {
+    toggle,
+    setToggle,
     userProfileView,
     setUserProfileView,
     userProfileViewTweets,
@@ -48,6 +50,9 @@ const ViewProfileComponent = () => {
     if (res.error) {
       navigate("/notloggedin");
     }
+
+    messageRef.current.value = "";
+    setToggle("false");
   };
 
   const toggleCommentsVisibility = () => {

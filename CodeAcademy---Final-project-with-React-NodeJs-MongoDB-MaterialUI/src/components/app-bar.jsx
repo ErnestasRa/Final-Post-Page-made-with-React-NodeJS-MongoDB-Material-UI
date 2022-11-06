@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import HomeIcon from "@mui/icons-material/Home";
 import { get } from "../functions/http";
 import colorBackground from "../styles/colors";
 import MainContext from "../context/main-context";
